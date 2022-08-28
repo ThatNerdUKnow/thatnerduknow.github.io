@@ -9,6 +9,7 @@ description = ""
 showFullContent = false
 readingTime = true
 hideComments = false
+draft = false
 +++
 
 At the beginning of this year I was itching to start a new project, and found one that sparked my interest. At the time I noticed online that there was interest around tracking the finances of politicians in the U.S. Senate and House of Representatives. The reason being that representatives and senators are privy to and influence economic policy which can and often do impact the stock market. This presents a conflict of interest on their part as at this point they can still participate in the stock market and may pass policies that impact their portfolio favorably. As a result, [concern of insider trading in congress has been growing in recent years](https://prospect.org/power/congress-beats-wall-street-at-its-own-game/). Tracking politicians' finances isn't a new idea, (see the Nancy Pelosi ETF). It seems however, that previous trackers have been focused on specific members. This is why I presume **@PelosiTracker** was banned from twitter. I decided to track all congress' financial disclosures. But where would I get the data?
