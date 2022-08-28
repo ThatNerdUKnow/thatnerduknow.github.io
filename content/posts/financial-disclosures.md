@@ -3,7 +3,6 @@ title = "I'm probably on a watchlist now"
 date = "2022-08-27T22:23:33-05:00"
 author = "Brandon Piña"
 authorTwitter = "" #do not include @
-cover = ""
 tags = ["programming"]
 keywords = ["twitter"]
 description = ""
@@ -16,7 +15,7 @@ At the beginning of this year I was itching to start a new project, and found on
 
 > On April 4, 2012, President Obama signed into law the Stop Trading on Congressional Knowledge Act of 2012, Pub. L. No. 112-105 (2012) (STOCK Act). Section 6 of the STOCK Act adds new subsection 103(l) to the Ethics in Government Act of 1978, 5 U.S.C. app. 4, § 101 et seq. (EIGA). Effective July 3, 2012, subsection 103(l) of EIGA requires that not later than 30 days after receiving notification of any transaction required to be reported under subsection 102(a)(5)(B) of EIGA, but in no case later than 45 days after such a transaction, a covered employee must file a report of the transaction.
 
-### *Thanks, Obama*
+## *Thanks, Obama*
 
 The idea of the STOCK act and EIGA is to keep Congress honest. Whether or not it actually does that remains to be seen. Financial disclosure data is available from the [House Clerk](https://disclosures-clerk.house.gov/PublicDisclosure/FinancialDisclosure) and the [Senate Clerk](https://efdsearch.senate.gov/search/home/) websites. The problem remains on how to get the data from these sites. I used a library called puppeteer to control a headless chromium web browser to scrape the documents from the house disclosure site. This gave me metadata such as Name, Date and Report type as well as a url where I could download a PDF of the submitted report. Now that I have the PDF File, How am I going to post it to twitter? As of now, there is no way to post a PDF as an attachment to a tweet. I need to convert it to JPEG files
 
@@ -29,7 +28,7 @@ There is a FOSS tool out there called ImageMagick that can convert images betwee
 
 To get an API key for Twitter, you need to submit an application and furthermore to get write access (which I need to post tweets) I need to submit yet another application. I managed to get write access easily enough, but at first my write access application was denied for reasons unknown. I appealed the decision and managed to get the access I needed to start tweeting.
 
-# Deployment
+## Deployment
 In a monster fueled fever dream, I managed to get a proof of concept up and running in the space of 24 hours, but there was still the matter of deploying the bot. I was having issues docker-izing the bot as it required dependencies outside the npm ecosystem
 
 Here's the dockerfile I ended up with
@@ -102,10 +101,10 @@ As you can see, the dockerfile I ended up with is substantial. Some of the issue
 * Imagemagick uses the filesystem as a cache. This is a problem as if you don't mount imagemagick's cache directory to a docker volume, your `docker.img` size will bloat as pdfs are and converted
     * Imagemagick conveniantly allows you to configure it's cache directory using the environment variable `MAGICK_TMPDIR`
 
-# Conclusion
+## Conclusion
 I'm pretty happy with the result I ended up with. I learned a lot about web scraping and more complicated deployments with docker. I had a few regrets after I was done though. For one, I only ended up scraping data from the house clerk site, as at the time I made the false assumption that the house clerk served both senate and house disclosures. Secondly, I threw this project together using plain javascript, with no framework or typescript. The lack of typescript is probably what ended up hurting me the most because when I went back to add support for senate disclosures, I had to try to remember what data lived in my variables and typescript would have made my life much simpler. I'm currently in the process of rewriting this project using `NestJS` which is a framework inspired by angular which makes managing the organization of your code much easier. I can seperate out the concerns of components of my project by domain into modules which give me a warm fuzzy feeling inside. Some other improvements I could have made were to first check if an API exists to gather this information before bothering with web scraping, but I was in such a hurry to see it working so I failed to do so. I'm currently having issues scraping the Senate Clerk site so that might be the push I need to go that route.
 
-### TLDR:
+## TLDR:
 I wrote a twitter bot that tracks congressional financial disclosures
 * Lessons Learned
     * Before resorting to web scraping, check if an API already exists
