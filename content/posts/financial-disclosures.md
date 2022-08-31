@@ -18,11 +18,11 @@ At the beginning of this year I was itching to start a new project, and found on
 
 ## *Thanks, Obama*
 
-The idea of the STOCK act and EIGA is to keep Congress honest. Whether or not it actually does that remains to be seen. Financial disclosure data is available from the [House Clerk](https://disclosures-clerk.house.gov/PublicDisclosure/FinancialDisclosure) and the [Senate Clerk](https://efdsearch.senate.gov/search/home/) websites. The problem remains on how to get the data from these sites. I used a library called puppeteer to control a headless chromium web browser to scrape the documents from the house disclosure site. This gave me metadata such as Name, Date and Report type as well as a url where I could download a PDF of the submitted report. Now that I have the PDF File, How am I going to post it to twitter? As of now, there is no way to post a PDF as an attachment to a tweet. I need to convert it to JPEG files
+The idea of the STOCK act and EIGA is to keep Congress honest. That's the idea at least. Financial disclosure data is available from the [House Clerk](https://disclosures-clerk.house.gov/PublicDisclosure/FinancialDisclosure) and the [Senate Clerk](https://efdsearch.senate.gov/search/home/) websites. The problem remains on how to get the data from these sites. I used a library called puppeteer to control a headless chromium web browser to scrape the documents from the house disclosure site. This gave me metadata such as Name, Date and Report type as well as a url where I could download a PDF of the submitted report. Now that I have the PDF File, How am I going to post it to twitter? As of now, there is no way to post a PDF as an attachment to a tweet. I need to convert it to JPEG files
 
 ## This is where the Magick happens
 
-There is a FOSS tool out there called ImageMagick that can convert images between formats and even do some processing as well. The conversion feature suits my needs perfectly fine. Importantly, we can control it using a library. I found a library with bindings for node unsuprisingly called *imagemagick* and I started merrily converting away.
+There is a FOSS tool out there called ImageMagick that can convert images between formats and even do some processing as well. The conversion feature suits my needs perfectly fine. Importantly, we can control it using a library. I found a library with bindings for node unsuprisingly called *imagemagick* and I started merrily converting away. To tell the truth there's not much to say here, despite the fact that without this specific component, this project would have never shipped.
 
 
 ## Posting to Twitter
