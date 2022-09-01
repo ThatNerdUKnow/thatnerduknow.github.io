@@ -22,7 +22,7 @@ The idea of the STOCK act and EIGA is to keep Congress honest. Whether or not it
 
 ## This is where the Magick happens
 
-There is a FOSS tool out there called ImageMagick that can convert images between formats and even do some processing as well. The conversion feature suits my needs perfectly fine. Importantly, we can control it using a library. I found a library with bindings for node unsuprisingly called *imagemagick* and I started merrily converting away.
+There is a FOSS tool out there called ImageMagick that can convert images between formats and even do some processing as well. The conversion feature suits my needs perfectly fine. Importantly, we can control it using a library. I found a library with bindings for node unsurprisingly called *imagemagick* and I started merrily converting away.
 
 
 ## Posting to Twitter
