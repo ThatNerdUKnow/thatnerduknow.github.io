@@ -1,6 +1,6 @@
 +++
 title = "Typescript Is Magic"
-date = "2022-09-01T17:26:00-05:00"
+date = "2022-08-31T17:26:00-05:00"
 author = "Brandon Piña"
 authorTwitter = "" #do not include @
 cover = ""
