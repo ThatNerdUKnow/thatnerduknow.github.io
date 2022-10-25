@@ -103,7 +103,7 @@ As you can see the validation rules implemented for Cipher are
 **In Gundam:** *A newtype is an evolved species of humans that have adapted to life in space*   
 **In Programming:** *A newtype is a type declared from the definition of an existing type*  
 
-In the context of programming, what does this really mean?
+All joking aside, in the context of programming, what does this really mean?
 
 Our language gives us primitive types that we can use to compose data structures. These primitives typically include booleans (true and false), numerical types (integers, floats), string slices and probably a few i'm forgetting. Let's say that I want to represent a distance as a floating point decimal. Let's say kilometers and meters. I might go about it in this way:
 ```rust
