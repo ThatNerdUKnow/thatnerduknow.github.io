@@ -347,7 +347,7 @@ pub fn encode(&self, s: &String) -> String {
 There's actually something special going on here. Can you see it? I'm multithreading it! Using the excellent `rayon` crate, I'm able to generate a *parallel* iterator from this string, allowing me to build my logic in the same manner as if I was writing a single threaded version!!!
 
 ## The Benchmarks:
-The benchmark generates a string of random characters (All A-Z) given length *n*
+The benchmark generates a string of random characters (All A-Z) given length *n*  
 I've generated benchmarks for strings of the following lengths
 - 1 thousand
 - 10 thousand
