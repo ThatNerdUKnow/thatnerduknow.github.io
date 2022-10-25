@@ -82,7 +82,7 @@ How does it work? The Enigma machine is comprised of 3 components:</description>
 &lt;h4 id="whats-a-newtype">What&amp;rsquo;s a newtype?&lt;/h4>
 &lt;p>&lt;strong>In Gundam:&lt;/strong> &lt;em>A newtype is an evolved species of humans that have adapted to life in space&lt;/em>&lt;br>
 &lt;strong>In Programming:&lt;/strong> &lt;em>A newtype is a type declared from the definition of an existing type&lt;/em>&lt;/p>
-&lt;p>In the context of programming, what does this really mean?&lt;/p>
+&lt;p>All joking aside, in the context of programming, what does this really mean?&lt;/p>
 &lt;p>Our language gives us primitive types that we can use to compose data structures. These primitives typically include booleans (true and false), numerical types (integers, floats), string slices and probably a few i&amp;rsquo;m forgetting. Let&amp;rsquo;s say that I want to represent a distance as a floating point decimal. Let&amp;rsquo;s say kilometers and meters. I might go about it in this way:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-rust" data-lang="rust">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> kilometers: &lt;span style="color:#66d9ef">f64&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">10&lt;/span>;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> meters: &lt;span style="color:#66d9ef">f64&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">100&lt;/span>;
