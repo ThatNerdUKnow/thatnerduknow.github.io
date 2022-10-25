@@ -281,7 +281,7 @@ Basically we take a vec of tuples &lt;code>(Character,Character)&lt;/code> and v
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>There&amp;rsquo;s actually something special going on here. Can you see it? I&amp;rsquo;m multithreading it! Using the excellent &lt;code>rayon&lt;/code> crate, I&amp;rsquo;m able to generate a &lt;em>parallel&lt;/em> iterator from this string, allowing me to build my logic in the same manner as if I was writing a single threaded version!!!&lt;/p>
 &lt;h2 id="the-benchmarks">The Benchmarks:&lt;/h2>
-&lt;p>The benchmark generates a string of random characters (All A-Z) given length &lt;em>n&lt;/em>
+&lt;p>The benchmark generates a string of random characters (All A-Z) given length &lt;em>n&lt;/em>&lt;br>
 I&amp;rsquo;ve generated benchmarks for strings of the following lengths&lt;/p>
 &lt;ul>
 &lt;li>1 thousand&lt;/li>
