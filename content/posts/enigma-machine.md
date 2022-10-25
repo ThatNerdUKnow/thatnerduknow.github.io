@@ -344,3 +344,57 @@ pub fn encode(&self, s: &String) -> String {
             .collect()
     }
 ```
+There's actually something special going on here. Can you see it? I'm multithreading it! Using the excellent `rayon` crate, I'm able to generate a *parallel* iterator from this string, allowing me to build my logic in the same manner as if I was writing a single threaded version!!!
+
+## The Benchmarks:
+The benchmark generates a string of random characters (All A-Z) given length *n*
+I've generated benchmarks for strings of the following lengths
+- 1 thousand
+- 10 thousand
+- 100 thousand
+- 1 million
+- 10 million
+- 100 million
+
+Here's the results
+
+
+```
+     Running benches\perf.rs (target\release\deps\perf-f5e366b5f8262b43.exe)
+1k                      time:   [215.39 µs 216.71 µs 218.12 µs]
+Found 5 outliers among 100 measurements (5.00%)
+  5 (5.00%) high mild
+
+10k                     time:   [591.08 µs 594.62 µs 598.26 µs]
+Found 4 outliers among 100 measurements (4.00%)
+  1 (1.00%) low mild
+  3 (3.00%) high mild
+
+Benchmarking 100k: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 9.6s, enable flat sampling, or reduce sample count to 50.
+100k                    time:   [1.8469 ms 1.8593 ms 1.8730 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  3 (3.00%) high mild
+
+1m                      time:   [9.3270 ms 9.4011 ms 9.4863 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high severe
+
+Benchmarking 10m: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 7.9s, or reduce sample count to 60.
+10m                     time:   [79.100 ms 79.525 ms 79.963 ms]
+Found 4 outliers among 100 measurements (4.00%)
+  4 (4.00%) high mild
+
+Benchmarking 100m: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 78.5s, or reduce sample count to 10.
+100m                    time:   [768.39 ms 771.83 ms 775.81 ms]
+Found 5 outliers among 100 measurements (5.00%)
+  2 (2.00%) high mild
+  3 (3.00%) high severe
+
+```
+That's right, We can encode 100 Million characters in less than a second, Or more practically, 1 million characters in around 9 Milliseconds. To put that in perspective, Herman Melville's *Moby Dick* utf-8 version from project gutenburg is a little over a megabyte. If we assume that each character takes up between 1 and 4 bytes per character (and let's face it it's mostly ascii) that gives us approximately a little over a million characters. We could encode the entirety of **Moby Dick** In ***Thousandths*** of a second. How about Crime and Punishment? War and peace? 
+- Crime and Punishment: 1.1MB
+- War and Peace: 3.2 MB  
+Not even Russian Literature stands a chance!
