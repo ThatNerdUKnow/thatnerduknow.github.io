@@ -279,7 +279,52 @@ Basically we take a vec of tuples &lt;code>(Character,Character)&lt;/code> and v
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .collect()
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>I'm probably on a watchlist now</title><link>https://thatnerduknow.github.io/posts/financial-disclosures/</link><pubDate>Sat, 27 Aug 2022 22:23:33 -0500</pubDate><guid>https://thatnerduknow.github.io/posts/financial-disclosures/</guid><description>At the beginning of this year I was itching to start a new project, and found one that sparked my interest. At the time I noticed online that there was interest around tracking the finances of politicians in the U.S. Senate and House of Representatives. The reason being that representatives and senators are privy to and influence economic policy which can and often do impact the stock market. This presents a conflict of interest on their part as at this point they can still participate in the stock market and may pass policies that impact their portfolio favorably.</description><content>&lt;p>At the beginning of this year I was itching to start a new project, and found one that sparked my interest. At the time I noticed online that there was interest around tracking the finances of politicians in the U.S. Senate and House of Representatives. The reason being that representatives and senators are privy to and influence economic policy which can and often do impact the stock market. This presents a conflict of interest on their part as at this point they can still participate in the stock market and may pass policies that impact their portfolio favorably. As a result, &lt;a href="https://prospect.org/power/congress-beats-wall-street-at-its-own-game/">concern of insider trading in congress has been growing in recent years&lt;/a>. Tracking politicians&amp;rsquo; finances isn&amp;rsquo;t a new idea, (see the Nancy Pelosi ETF). It seems however, that previous trackers have been focused on specific members. This is why I presume &lt;strong>@PelosiTracker&lt;/strong> was banned from twitter. I decided to track all congress&amp;rsquo; financial disclosures. But where would I get the data?&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>There&amp;rsquo;s actually something special going on here. Can you see it? I&amp;rsquo;m multithreading it! Using the excellent &lt;code>rayon&lt;/code> crate, I&amp;rsquo;m able to generate a &lt;em>parallel&lt;/em> iterator from this string, allowing me to build my logic in the same manner as if I was writing a single threaded version!!!&lt;/p>
+&lt;h2 id="the-benchmarks">The Benchmarks:&lt;/h2>
+&lt;p>The benchmark generates a string of random characters (All A-Z) given length &lt;em>n&lt;/em>
+I&amp;rsquo;ve generated benchmarks for strings of the following lengths&lt;/p>
+&lt;ul>
+&lt;li>1 thousand&lt;/li>
+&lt;li>10 thousand&lt;/li>
+&lt;li>100 thousand&lt;/li>
+&lt;li>1 million&lt;/li>
+&lt;li>10 million&lt;/li>
+&lt;li>100 million&lt;/li>
+&lt;/ul>
+&lt;p>Here&amp;rsquo;s the results&lt;/p>
+&lt;pre tabindex="0">&lt;code> Running benches\perf.rs (target\release\deps\perf-f5e366b5f8262b43.exe)
+1k time: [215.39 µs 216.71 µs 218.12 µs]
+Found 5 outliers among 100 measurements (5.00%)
+5 (5.00%) high mild
+10k time: [591.08 µs 594.62 µs 598.26 µs]
+Found 4 outliers among 100 measurements (4.00%)
+1 (1.00%) low mild
+3 (3.00%) high mild
+Benchmarking 100k: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 9.6s, enable flat sampling, or reduce sample count to 50.
+100k time: [1.8469 ms 1.8593 ms 1.8730 ms]
+Found 3 outliers among 100 measurements (3.00%)
+3 (3.00%) high mild
+1m time: [9.3270 ms 9.4011 ms 9.4863 ms]
+Found 1 outliers among 100 measurements (1.00%)
+1 (1.00%) high severe
+Benchmarking 10m: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 7.9s, or reduce sample count to 60.
+10m time: [79.100 ms 79.525 ms 79.963 ms]
+Found 4 outliers among 100 measurements (4.00%)
+4 (4.00%) high mild
+Benchmarking 100m: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 78.5s, or reduce sample count to 10.
+100m time: [768.39 ms 771.83 ms 775.81 ms]
+Found 5 outliers among 100 measurements (5.00%)
+2 (2.00%) high mild
+3 (3.00%) high severe
+&lt;/code>&lt;/pre>&lt;p>That&amp;rsquo;s right, We can encode 100 Million characters in less than a second, Or more practically, 1 million characters in around 9 Milliseconds. To put that in perspective, Herman Melville&amp;rsquo;s &lt;em>Moby Dick&lt;/em> utf-8 version from project gutenburg is a little over a megabyte. If we assume that each character takes up between 1 and 4 bytes per character (and let&amp;rsquo;s face it it&amp;rsquo;s mostly ascii) that gives us approximately a little over a million characters. We could encode the entirety of &lt;strong>Moby Dick&lt;/strong> In &lt;em>&lt;strong>Thousandths&lt;/strong>&lt;/em> of a second. How about Crime and Punishment? War and peace?&lt;/p>
+&lt;ul>
+&lt;li>Crime and Punishment: 1.1MB&lt;/li>
+&lt;li>War and Peace: 3.2 MB&lt;br>
+Not even Russian Literature stands a chance!&lt;/li>
+&lt;/ul></content></item><item><title>I'm probably on a watchlist now</title><link>https://thatnerduknow.github.io/posts/financial-disclosures/</link><pubDate>Sat, 27 Aug 2022 22:23:33 -0500</pubDate><guid>https://thatnerduknow.github.io/posts/financial-disclosures/</guid><description>At the beginning of this year I was itching to start a new project, and found one that sparked my interest. At the time I noticed online that there was interest around tracking the finances of politicians in the U.S. Senate and House of Representatives. The reason being that representatives and senators are privy to and influence economic policy which can and often do impact the stock market. This presents a conflict of interest on their part as at this point they can still participate in the stock market and may pass policies that impact their portfolio favorably.</description><content>&lt;p>At the beginning of this year I was itching to start a new project, and found one that sparked my interest. At the time I noticed online that there was interest around tracking the finances of politicians in the U.S. Senate and House of Representatives. The reason being that representatives and senators are privy to and influence economic policy which can and often do impact the stock market. This presents a conflict of interest on their part as at this point they can still participate in the stock market and may pass policies that impact their portfolio favorably. As a result, &lt;a href="https://prospect.org/power/congress-beats-wall-street-at-its-own-game/">concern of insider trading in congress has been growing in recent years&lt;/a>. Tracking politicians&amp;rsquo; finances isn&amp;rsquo;t a new idea, (see the Nancy Pelosi ETF). It seems however, that previous trackers have been focused on specific members. This is why I presume &lt;strong>@PelosiTracker&lt;/strong> was banned from twitter. I decided to track all congress&amp;rsquo; financial disclosures. But where would I get the data?&lt;/p>
 &lt;blockquote>
 &lt;p>On April 4, 2012, President Obama signed into law the Stop Trading on Congressional Knowledge Act of 2012, Pub. L. No. 112-105 (2012) (STOCK Act). Section 6 of the STOCK Act adds new subsection 103(l) to the Ethics in Government Act of 1978, 5 U.S.C. app. 4, § 101 et seq. (EIGA). Effective July 3, 2012, subsection 103(l) of EIGA requires that not later than 30 days after receiving notification of any transaction required to be reported under subsection 102(a)(5)(B) of EIGA, but in no case later than 45 days after such a transaction, a covered employee must file a report of the transaction.&lt;/p>
 &lt;/blockquote>

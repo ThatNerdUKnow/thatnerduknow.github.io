@@ -279,4 +279,49 @@ Basically we take a vec of tuples &lt;code>(Character,Character)&lt;/code> and v
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .collect()
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item></channel></rss>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>There&amp;rsquo;s actually something special going on here. Can you see it? I&amp;rsquo;m multithreading it! Using the excellent &lt;code>rayon&lt;/code> crate, I&amp;rsquo;m able to generate a &lt;em>parallel&lt;/em> iterator from this string, allowing me to build my logic in the same manner as if I was writing a single threaded version!!!&lt;/p>
+&lt;h2 id="the-benchmarks">The Benchmarks:&lt;/h2>
+&lt;p>The benchmark generates a string of random characters (All A-Z) given length &lt;em>n&lt;/em>
+I&amp;rsquo;ve generated benchmarks for strings of the following lengths&lt;/p>
+&lt;ul>
+&lt;li>1 thousand&lt;/li>
+&lt;li>10 thousand&lt;/li>
+&lt;li>100 thousand&lt;/li>
+&lt;li>1 million&lt;/li>
+&lt;li>10 million&lt;/li>
+&lt;li>100 million&lt;/li>
+&lt;/ul>
+&lt;p>Here&amp;rsquo;s the results&lt;/p>
+&lt;pre tabindex="0">&lt;code> Running benches\perf.rs (target\release\deps\perf-f5e366b5f8262b43.exe)
+1k time: [215.39 µs 216.71 µs 218.12 µs]
+Found 5 outliers among 100 measurements (5.00%)
+5 (5.00%) high mild
+10k time: [591.08 µs 594.62 µs 598.26 µs]
+Found 4 outliers among 100 measurements (4.00%)
+1 (1.00%) low mild
+3 (3.00%) high mild
+Benchmarking 100k: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 9.6s, enable flat sampling, or reduce sample count to 50.
+100k time: [1.8469 ms 1.8593 ms 1.8730 ms]
+Found 3 outliers among 100 measurements (3.00%)
+3 (3.00%) high mild
+1m time: [9.3270 ms 9.4011 ms 9.4863 ms]
+Found 1 outliers among 100 measurements (1.00%)
+1 (1.00%) high severe
+Benchmarking 10m: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 7.9s, or reduce sample count to 60.
+10m time: [79.100 ms 79.525 ms 79.963 ms]
+Found 4 outliers among 100 measurements (4.00%)
+4 (4.00%) high mild
+Benchmarking 100m: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 78.5s, or reduce sample count to 10.
+100m time: [768.39 ms 771.83 ms 775.81 ms]
+Found 5 outliers among 100 measurements (5.00%)
+2 (2.00%) high mild
+3 (3.00%) high severe
+&lt;/code>&lt;/pre>&lt;p>That&amp;rsquo;s right, We can encode 100 Million characters in less than a second, Or more practically, 1 million characters in around 9 Milliseconds. To put that in perspective, Herman Melville&amp;rsquo;s &lt;em>Moby Dick&lt;/em> utf-8 version from project gutenburg is a little over a megabyte. If we assume that each character takes up between 1 and 4 bytes per character (and let&amp;rsquo;s face it it&amp;rsquo;s mostly ascii) that gives us approximately a little over a million characters. We could encode the entirety of &lt;strong>Moby Dick&lt;/strong> In &lt;em>&lt;strong>Thousandths&lt;/strong>&lt;/em> of a second. How about Crime and Punishment? War and peace?&lt;/p>
+&lt;ul>
+&lt;li>Crime and Punishment: 1.1MB&lt;/li>
+&lt;li>War and Peace: 3.2 MB&lt;br>
+Not even Russian Literature stands a chance!&lt;/li>
+&lt;/ul></content></item></channel></rss>
